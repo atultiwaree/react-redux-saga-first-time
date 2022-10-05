@@ -14,6 +14,7 @@ export const Cart = () => {
           <th>Product name</th>
           <th>Price</th>
         </tr>
+
         {cartData.length > 0 ? (
           cartData.map((x, y) => (
             <tr key={y}>

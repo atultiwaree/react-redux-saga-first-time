@@ -1,6 +1,11 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { searchProduct } from "../redux/action";
+import { useDispatch } from "react-redux";
+
 const Header = () => {
+  const dispatcher = useDispatch();
+
   const result = useSelector((state) => state.cartData);
   console.warn("data in header", result);
   return (
@@ -10,6 +15,21 @@ const Header = () => {
           <i>DeftShop</i>
         </div>
       </Link>
+
+      <input
+        type="search"
+        placeholder="Search product..."
+        name=""
+        id=""
+        style={{
+          flexBasis: "50%",
+          border: "4px solid blue",
+          padding: ".4rem",
+          borderRadius: "8px",
+          fontWeight: "500",
+        }}
+        onChange={(e) => dispatcher(searchProduct(e.target.value))}
+      />
 
       <Link to="/Cart">
         <div className="cart-div">

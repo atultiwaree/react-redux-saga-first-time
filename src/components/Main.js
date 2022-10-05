@@ -52,8 +52,3 @@ function Main() {
 }
 
 export default Main;
-
-//fucking I'll get that product...
-//Json object having t 5 keys
-
-// thumImg :  ', title : ', id : ', details

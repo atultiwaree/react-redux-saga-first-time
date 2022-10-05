@@ -31,6 +31,11 @@ export const cartData = (data = [], action) => {
       console.warn("EMPTY CART condition ", action);
       data = [];
       return [...data];
+
+    // case SEARCH_PRODUCTS:
+    //   console.log("Search query data : 1", action);
+    //   return [...data];
+
     default:
       return [];
   }
