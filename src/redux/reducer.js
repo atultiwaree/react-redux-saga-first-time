@@ -4,7 +4,7 @@ export const cartData = (data = [], action) => {
   switch (action.type) {
     case ADD_TO_CART:
       console.log("ADD", action);
-      if (data.find((x) => x == action.data)) {
+      if (data.find((x) => x === action.data)) {
         console.log("Its a match you fucking bitch...");
         return [...data];
       } else {

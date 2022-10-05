@@ -10,10 +10,7 @@ function Main() {
 
   useEffect(() => {
     dispatch(productList());
-
-    return () => {
-      console.log("hooked");
-    };
+    //eslint-disable-next-line
   }, []);
 
   return (
@@ -21,6 +18,8 @@ function Main() {
       <div>
         <button onClick={() => dispatch(emptyCart())}>Empty Cart</button>
       </div>
+
+      {console.log(selector.cartData)}
 
       <div className="productContainer">
         {selector.productData.map((y, i) => (
@@ -31,12 +30,10 @@ function Main() {
             </div>
             <div className="details">
               <h4 className="h5 title">{y.title}</h4>
+              <h5 className="price">Price ₹ : {y.price}</h5>
               <p className="desc">{y.detail}</p>
               <div className="btnContainer">
-                <button
-                  onClick={() => dispatch(addToCart(y.id))}
-                  className="add"
-                >
+                <button onClick={() => dispatch(addToCart(y))} className="add">
                   Add to cart
                 </button>
                 <button
