@@ -33,13 +33,10 @@ function Main() {
         "Selected Btn Ids ",
         btnIds
       )}
-
       <div>
         <button onClick={() => dispatch(emptyCart())}>Empty Cart</button>
       </div>
-
       {console.log(selector.cartData)}
-
       <div className="productContainer">
         {selector.productData.map((y, i) => (
           <div key={i} className="productCard">
@@ -55,7 +52,11 @@ function Main() {
                 <button
                   style={
                     verifier(y.id) === true
-                      ? { pointerEvents: "none", backgroundColor: "#36AE7C33" }
+                      ? {
+                          pointerEvents: "none",
+                          backgroundColor: "#36AE7C33",
+                          display: "none",
+                        }
                       : { color: "white" }
                   }
                   onClick={() => dispatch(addToCart(y))}
@@ -66,6 +67,15 @@ function Main() {
                 <button
                   onClick={() => dispatch(removeToCart(y.id))}
                   className="remove"
+                  style={
+                    verifier(y.id) === false
+                      ? {
+                          pointerEvents: "none",
+                          backgroundColor: "rgba(234, 78, 60, 0.35)",
+                          display: "none",
+                        }
+                      : { color: "white" }
+                  }
                 >
                   Remove from cart
                 </button>
@@ -77,5 +87,4 @@ function Main() {
     </div>
   );
 }
-
 export default Main;
