@@ -7,6 +7,18 @@ import { useEffect } from "react";
 function Main() {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state);
+  const btnIds = selector.cartData.map((x) => x.id);
+  const allProductIds = selector.productData.map((y) => y.id);
+
+  const verifier = (id) => {
+    // console.log("Its verifier ", btnIds, allProductIds, id);
+    const isPreset = btnIds.indexOf(id);
+    if (isPreset >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   useEffect(() => {
     dispatch(productList());
@@ -15,6 +27,13 @@ function Main() {
 
   return (
     <div>
+      {console.log(
+        "All products ids : ",
+        allProductIds,
+        "Selected Btn Ids ",
+        btnIds
+      )}
+
       <div>
         <button onClick={() => dispatch(emptyCart())}>Empty Cart</button>
       </div>
@@ -33,7 +52,15 @@ function Main() {
               <h5 className="price">Price ₹ : {y.price}</h5>
               <p className="desc">{y.detail}</p>
               <div className="btnContainer">
-                <button onClick={() => dispatch(addToCart(y))} className="add">
+                <button
+                  style={
+                    verifier(y.id) === true
+                      ? { pointerEvents: "none", backgroundColor: "#36AE7C33" }
+                      : { color: "white" }
+                  }
+                  onClick={() => dispatch(addToCart(y))}
+                  className="add"
+                >
                   Add to cart
                 </button>
                 <button
