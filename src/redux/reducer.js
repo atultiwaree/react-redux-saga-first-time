@@ -12,13 +12,26 @@ export const cartData = (data = [], action) => {
       }
 
     case REMOVE_FROM_CART:
-      console.log("REMOVE FUNCTION CALLED ", action);
+      console.log('Remove reducer called! :)');
+      const oldArrOfObj = [...data]
+      console.log('Previous Data : ', oldArrOfObj);
+      const currentHeadingProduct = action.data;
+      const index = oldArrOfObj.findIndex((x) => x.id === currentHeadingProduct)
+      console.log('Index of element with Id : ', index)
+      console.log('To remove arr of obje', oldArrOfObj)
+      oldArrOfObj.splice(index, 1)
+      console.log('Removed Object array', oldArrOfObj);
+      return [...oldArrOfObj]
+ 
+
+      
+      // console.log("REMOVE FUNCTION CALLED ", action);
       //   data.length = data.length ? data.length - 1 : [];
-      const toRm = data.indexOf(action.data);
-      const newArr = [...data];
-      newArr.splice(toRm, 1);
-      console.log(newArr);
-      return newArr;
+      // const toRm = data.indexOf(action.data);
+      // const newArr = [...data];
+      // newArr.splice(toRm, 1);
+      // console.log(newArr);
+      // return newArr;
     //   console.log("Index : " + toRm + "Array : " + newArr);
     //   const rmElArr =
     //   console.log(
@@ -32,9 +45,7 @@ export const cartData = (data = [], action) => {
       data = [];
       return [...data];
 
-    // case SEARCH_PRODUCTS:
-    //   console.log("Search query data : 1", action);
-    //   return [...data];
+
 
     default:
       return [];
