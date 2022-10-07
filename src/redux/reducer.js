@@ -48,6 +48,6 @@ export const cartData = (data = [], action) => {
 
 
     default:
-      return [];
+      return [...data];
   }
 };
